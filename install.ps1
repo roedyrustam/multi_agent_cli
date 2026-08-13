@@ -26,11 +26,11 @@ if (Test-Path $InstallDir) {
 Write-Host "🐍 Setting up Python virtual environment..." -ForegroundColor Green
 python -m venv venv
 
-Write-Host "📦 Installing dependencies..." -ForegroundColor Green
-.\venv\Scripts\pip.exe install -r requirements.txt
+Write-Host "Installing dependencies and CLI tool..." -ForegroundColor Cyan
+& "$VenvDir\Scripts\pip.exe" install -e .
 
 Write-Host "✅ Installation Complete!" -ForegroundColor Cyan
 Write-Host "To get started, run the following commands:" -ForegroundColor White
 Write-Host "  cd $InstallDir" -ForegroundColor Yellow
 Write-Host "  .\venv\Scripts\Activate.ps1" -ForegroundColor Yellow
-Write-Host "  python cli.py setup" -ForegroundColor Yellow
+Write-Host "  macli setup" -ForegroundColor Yellow

@@ -32,8 +32,8 @@ if exist "%INSTALL_DIR%" (
 echo Setting up Python virtual environment...
 python -m venv venv
 
-echo Installing dependencies...
-call venv\Scripts\pip.exe install -r requirements.txt
+echo Installing dependencies and CLI tool...
+call venv\Scripts\pip.exe install -e .
 
 echo.
 echo =========================================
@@ -42,5 +42,5 @@ echo =========================================
 echo To get started, run the following commands:
 echo   cd %INSTALL_DIR%
 echo   venv\Scripts\activate.bat
-echo   python cli.py setup
+echo   macli setup
 echo.

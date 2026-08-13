@@ -61,7 +61,7 @@ docker attach multi_agent_cli_cli_1
 4. **Set up Environment Variables**
    The application comes with an interactive setup wizard! Simply run the setup command to configure your API keys:
    ```bash
-   python cli.py setup
+   macli setup
    ```
    Or you can manually rename `.env.example` to `.env` and add them yourself.
 
@@ -69,38 +69,42 @@ docker attach multi_agent_cli_cli_1
 
 ## 🚀 Usage
 
-### 1. Check Available Skills
+### 1. View all Commands
+```bash
+macli --help
+```
+
+### 2. View all Available Agents
+```bash
+macli list-agents
+```
+
+### 3. Check Available Skills
 List all skills currently loaded in your `skills/` directory:
 ```bash
-python cli.py list-skills
+macli list-skills
 ```
 
-### 2. Check Configured Agents
-View the agents defined in your `agents.yaml`:
-```bash
-python cli.py list-agents
-```
-
-### 3. Autonomous Swarm Director (Advanced)
+### 4. Autonomous Swarm Director (Advanced)
 Turn the CLI into a dynamic Swarm (like OpenDevin or Hermes). The Swarm Director will dynamically parse your prompt, delegate to agents, and the agents can execute real Python code, search the web, and read/write files!
 ```bash
-python cli.py swarm "Search the web for the latest Python version, write a simple script to print it, and execute it to verify."
+macli swarm "Search the web for the latest Python version, write a simple script to print it, and execute it to verify."
 ```
 
-### 4. Run a static Workflow
+### 5. Run a static Workflow
 Execute a multi-agent workflow defined strictly in `agents.yaml`. By default, it runs the `research_and_write` workflow.
 ```bash
-python cli.py run "Build a simple Hello World in Python" --workflow research_and_write
+macli run "Build a simple Hello World in Python" --workflow research_and_write
 ```
 
-### 5. Interactive Chat Mode
+### 6. Interactive Chat Mode
 Want to chat directly with a single agent to test its skills? You can enter an interactive chat mode!
 ```bash
-python cli.py chat Researcher
+macli chat Researcher
 ```
 Type `exit` or `quit` to leave the chat.
 
-### 5. Auto-Saved Conversation Logs
+### 7. Auto-Saved Conversation Logs
 Every time you run a workflow or chat with an agent, the full conversation is automatically exported as a Markdown file in the `outputs/` directory.
 
 ---
@@ -108,7 +112,7 @@ Every time you run a workflow or chat with an agent, the full conversation is au
 ## 🧠 How to Add New Skills
 The CLI provides a built-in generator to help you create new skills easily:
 ```bash
-python cli.py create-skill
+macli create-skill
 ```
 This will launch a wizard asking for the skill name and description, and will automatically generate a `.md` file in the `skills/` directory with the proper YAML frontmatter.
 
