@@ -15,25 +15,38 @@ This project features native integration with the **Vibes-Plug** ecosystem, allo
 
 ## 🛠️ Installation
 
+### 🚀 Quick Install (Windows)
+
+**Using PowerShell:**
+```powershell
+irm https://raw.githubusercontent.com/YOUR_USERNAME/multi-agent-cli/master/install.ps1 | iex
+```
+
+**Using CMD (requires curl):**
+```cmd
+curl -sSL https://raw.githubusercontent.com/YOUR_USERNAME/multi-agent-cli/master/install.bat -o install.bat && install.bat
+```
+
+*(Note: Don't forget to replace `YOUR_USERNAME` with your actual GitHub username before sharing these links!)*
+
+### 🔧 Manual Installation
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/multi-agent-cli.git
+   git clone https://github.com/YOUR_USERNAME/multi-agent-cli.git
    cd multi-agent-cli
    ```
 
-2. **Create a virtual environment (Recommended)**
+2. **Create a virtual environment & Install**
    ```bash
    python -m venv venv
    # Windows:
    .\venv\Scripts\activate
    # Mac/Linux:
    source venv/bin/activate
-   ```
-
-3. **Install dependencies**
-   ```bash
+   
    pip install -r requirements.txt
    ```
+
 
 4. **Set up Environment Variables**
    The application comes with an interactive setup wizard! Simply run the setup command to configure your API keys:
