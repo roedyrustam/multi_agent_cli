@@ -4,7 +4,11 @@ Write-Host "               Uninstallation Utility      " -ForegroundColor Yellow
 Write-Host "==========================================================" -ForegroundColor Red
 Write-Host ""
 
-$InstallDir = "$env:USERPROFILE\multi-agent-cli"
+$InstallDir = $PSScriptRoot
+if ([string]::IsNullOrEmpty($InstallDir)) {
+    $InstallDir = $PWD.Path
+}
+Write-Host "📍 Detected installation at: $InstallDir" -ForegroundColor Yellow
 Write-Host "🧹 Cleaning up User PATH registry..." -ForegroundColor Cyan
 
 $UserPath = [Environment]::GetEnvironmentVariable("PATH", "User")

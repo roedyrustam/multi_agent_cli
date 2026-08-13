@@ -83,13 +83,13 @@ To completely remove the Swarm Director, remove the PATH registry and delete the
 
 **Using PowerShell:**
 ```powershell
-cd $env:USERPROFILE\multi-agent-cli
+cd /path/to/multi-agent-cli
 .\uninstall.ps1
 ```
 
 **Using CMD:**
 ```cmd
-cd %USERPROFILE%\multi-agent-cli
+cd \path\to\multi-agent-cli
 uninstall.bat
 ```
 

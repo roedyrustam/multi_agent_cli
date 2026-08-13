@@ -15,7 +15,12 @@ Write-Host ""
 Write-Host "🚀 Bootstrapping Neural Uplink (Installing CLI)..." -ForegroundColor Cyan
 
 $RepoUrl = "https://github.com/roedyrustam/multi_agent_cli.git"
-$InstallDir = "$env:USERPROFILE\multi-agent-cli"
+if (Test-Path (Join-Path $PWD "setup.py")) {
+    $InstallDir = $PWD.Path
+    Write-Host "📍 Detected local repository at $InstallDir" -ForegroundColor Yellow
+} else {
+    $InstallDir = "$env:USERPROFILE\multi-agent-cli"
+}
 
 if (!(Get-Command git -ErrorAction SilentlyContinue)) {
     Write-Host "❌ Error: Git is not installed or not in PATH." -ForegroundColor Red

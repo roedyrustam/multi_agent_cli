@@ -6,7 +6,9 @@ echo               Uninstallation Utility
 echo ==========================================================
 echo.
 
-set INSTALL_DIR=%USERPROFILE%\multi-agent-cli
+set INSTALL_DIR=%~dp0
+if "%INSTALL_DIR:~-1%"=="\" set INSTALL_DIR=%INSTALL_DIR:~0,-1%
+echo [INFO] Detected installation at: %INSTALL_DIR%
 
 echo Cleaning up User PATH registry...
 powershell -NoProfile -ExecutionPolicy Bypass -Command "$InstallDir = '%INSTALL_DIR%'; $UserPath = [Environment]::GetEnvironmentVariable('PATH', 'User'); if ($UserPath) { $Paths = $UserPath -split ';'; $NewPaths = $Paths | Where-Object { $_ -ne $InstallDir -and $_ -ne '' }; $NewPathString = $NewPaths -join ';'; [Environment]::SetEnvironmentVariable('PATH', $NewPathString, 'User'); Write-Host '✅ Successfully removed from User PATH.' -ForegroundColor Green }"

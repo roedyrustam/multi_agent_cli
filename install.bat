@@ -17,7 +17,12 @@ echo.
 echo Bootstrapping Neural Uplink (Installing CLI)...
 
 set REPO_URL=https://github.com/roedyrustam/multi_agent_cli.git
-set INSTALL_DIR=%USERPROFILE%\multi-agent-cli
+if exist "%CD%\setup.py" (
+    set INSTALL_DIR=%CD%
+    echo [INFO] Detected local repository at %CD%
+) else (
+    set INSTALL_DIR=%USERPROFILE%\multi-agent-cli
+)
 
 git --version >nul 2>&1
 if %errorlevel% neq 0 (
