@@ -9,7 +9,12 @@ class Agent:
         self.name = config.get("name", "Unnamed Agent")
         self.role = config.get("role", "AI Assistant")
         self.description = config.get("description", "")
-        self.model = config.get("model", "gemini/gemini-2.5-flash")
+        import os
+        raw_model = config.get("model", "default")
+        if raw_model == "default":
+            self.model = os.getenv("DEFAULT_MODEL", "gemini/gemini-2.5-flash")
+        else:
+            self.model = raw_model
         
         # Load skills and build system prompt
         self.skills = config.get("skills", [])
