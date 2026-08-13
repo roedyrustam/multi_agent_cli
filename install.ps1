@@ -30,7 +30,8 @@ if (!(Get-Command python -ErrorAction SilentlyContinue)) {
 if (Test-Path $InstallDir) {
     Write-Host "📂 Directory already exists: $InstallDir. Pulling latest updates..." -ForegroundColor Yellow
     Set-Location $InstallDir
-    git pull
+    git fetch --all
+    git reset --hard origin/main
 } else {
     Write-Host "📥 Cloning repository to $InstallDir..." -ForegroundColor Green
     git clone $RepoUrl $InstallDir

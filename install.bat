@@ -35,7 +35,8 @@ if exist "%INSTALL_DIR%" (
     echo Directory already exists: %INSTALL_DIR%.
     echo Pulling latest updates...
     cd /d "%INSTALL_DIR%"
-    git pull
+    git fetch --all
+    git reset --hard origin/main
 ) else (
     echo Cloning repository to %INSTALL_DIR%...
     git clone %REPO_URL% "%INSTALL_DIR%"
