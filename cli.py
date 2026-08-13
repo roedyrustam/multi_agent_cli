@@ -47,17 +47,19 @@ def run(task: str, workflow: str = typer.Option("research_and_write", "--workflo
 
 @app.command()
 def list_skills():
-    """Lists all available skills in the skills directory."""
+    """Lists all available skills in the global registry (Local + Antigravity + Claude)."""
     skills = get_all_skills()
     if not skills:
-        console.print("[yellow]No skills found in the skills/ directory.[/yellow]")
+        console.print("[yellow]No skills found globally or locally.[/yellow]")
         return
         
-    table = Table(title="Available Skills")
+    table = Table(title="Global Skill Registry")
     table.add_column("Skill Name", style="cyan")
+    table.add_column("Source", style="magenta")
+    table.add_column("Description", style="green")
     
-    for skill in skills:
-        table.add_row(skill)
+    for skill_name, info in skills.items():
+        table.add_row(skill_name, info['source'], info['description'][:50] + "..." if len(info['description']) > 50 else info['description'])
         
     console.print(table)
 
