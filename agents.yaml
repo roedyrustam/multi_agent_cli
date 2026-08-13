@@ -18,4 +18,5 @@ workflows:
     description: "Research a topic and then write a comprehensive guide."
     steps:
       - agent: "Researcher"
+        require_human_approval: true
       - agent: "Writer"

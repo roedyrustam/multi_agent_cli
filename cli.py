@@ -140,7 +140,14 @@ def chat(agent_name: str = typer.Argument(..., help="The name of the agent to ch
             user_input = Prompt.ask("[bold blue]You[/bold blue]")
             if user_input.lower() in ['exit', 'quit']:
                 console.print(f"[yellow]Ending chat session...[/yellow]")
-                console.print(f"[green]Chat log saved to: {logger.get_filepath()}[/green]")
+                console.print(f"[green]Chat log saved to: {logger.get_filepath()}[/green]\n")
+                
+                table = Table(title="📊 Token & Cost Tracker")
+                table.add_column("Agent", style="cyan")
+                table.add_column("Tokens Used", style="magenta")
+                table.add_column("Est. Cost (USD)", style="green")
+                table.add_row(agent_name, str(agent.total_tokens), f"[bold]${agent.total_cost:.6f}[/bold]", style="yellow")
+                console.print(table)
                 break
                 
             if not user_input.strip():

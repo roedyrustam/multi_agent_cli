@@ -1,4 +1,5 @@
 import litellm
+from litellm import completion_cost
 from skills_parser import load_skill
 
 class Agent:
@@ -11,6 +12,10 @@ class Agent:
         # Load skills and build system prompt
         self.skills = config.get("skills", [])
         self.system_prompt = self._build_system_prompt(skills_dir)
+        
+        # Tracking
+        self.total_tokens = 0
+        self.total_cost = 0.0
         
         # Conversation history
         self.messages = [
@@ -36,6 +41,16 @@ class Agent:
                 model=self.model,
                 messages=self.messages
             )
+            
+            # Track tokens and cost
+            usage = getattr(response, 'usage', None)
+            if usage:
+                self.total_tokens += getattr(usage, 'total_tokens', 0)
+            
+            try:
+                self.total_cost += completion_cost(completion_response=response)
+            except Exception:
+                pass
             
             reply = response.choices[0].message.content
             self.messages.append({"role": "assistant", "content": reply})
