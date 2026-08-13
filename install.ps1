@@ -29,8 +29,20 @@ python -m venv venv
 Write-Host "Installing dependencies and CLI tool..." -ForegroundColor Cyan
 & ".\venv\Scripts\pip.exe" install -e .
 
+Write-Host "🌍 Creating global wrapper script..." -ForegroundColor Cyan
+$WrapperPath = Join-Path $InstallDir "macli.cmd"
+Set-Content -Path $WrapperPath -Value "@echo off`r`n`"%~dp0venv\Scripts\macli.exe`" %*"
+
+Write-Host "🔗 Adding to User PATH..." -ForegroundColor Cyan
+$UserPath = [Environment]::GetEnvironmentVariable("PATH", "User")
+if ($UserPath -notmatch [regex]::Escape($InstallDir)) {
+    $NewPath = "$InstallDir;$UserPath"
+    [Environment]::SetEnvironmentVariable("PATH", $NewPath, "User")
+    Write-Host "✅ Added $InstallDir to PATH." -ForegroundColor Green
+} else {
+    Write-Host "✅ Already in PATH." -ForegroundColor Green
+}
+
 Write-Host "✅ Installation Complete!" -ForegroundColor Cyan
-Write-Host "To get started, run the following commands:" -ForegroundColor White
-Write-Host "  cd $InstallDir" -ForegroundColor Yellow
-Write-Host "  .\venv\Scripts\Activate.ps1" -ForegroundColor Yellow
+Write-Host "To get started, simply open a NEW terminal and run:" -ForegroundColor White
 Write-Host "  macli setup" -ForegroundColor Yellow
