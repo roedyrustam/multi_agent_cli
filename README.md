@@ -77,6 +77,22 @@ docker attach multi_agent_cli_cli_1
    ```
    Or you can manually rename `.env.example` to `.env` and add them yourself.
 
+### 🧹 Uninstallation
+
+To completely remove the Swarm Director, remove the PATH registry and delete the environment, simply run the built-in uninstaller from the installation directory:
+
+**Using PowerShell:**
+```powershell
+cd $env:USERPROFILE\multi-agent-cli
+.\uninstall.ps1
+```
+
+**Using CMD:**
+```cmd
+cd %USERPROFILE%\multi-agent-cli
+uninstall.bat
+```
+
 ---
 
 ## 🚀 Usage
