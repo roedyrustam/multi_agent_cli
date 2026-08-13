@@ -11,7 +11,8 @@ setup(
         "litellm>=1.0.0",
         "pyyaml>=6.0",
         "python-dotenv>=1.0.0",
-        "duckduckgo-search>=5.3.0"
+        "duckduckgo-search>=5.3.0",
+        "python-frontmatter>=1.1.0"
     ],
     entry_points={
         "console_scripts": [
