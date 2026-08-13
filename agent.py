@@ -30,7 +30,7 @@ class Agent:
         if self.skills:
             prompt += "You have been equipped with the following specialized skills. Follow their instructions strictly:\n"
             for skill_name in self.skills:
-                skill_content = load_skill(skill_name, skills_dir)
+                skill_content = load_skill(skill_name)
                 prompt += skill_content
                 
         return prompt
