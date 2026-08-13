@@ -24,7 +24,11 @@ class Orchestrator:
         return workflow
 
     def run_workflow(self, workflow_name: str, task: str):
+        from logger import ConversationLogger
         workflow = self.initialize_agents(workflow_name)
+        
+        logger = ConversationLogger("workflow", workflow_name)
+        logger.log_user(task)
         
         current_input = task
         console.print(f"[bold blue]Starting workflow:[/bold blue] {workflow_name}")
@@ -44,9 +48,12 @@ class Orchestrator:
                 
             with console.status(f"[bold yellow]{agent_name} is thinking...[/bold yellow]", spinner="dots"):
                 reply = agent.chat(prompt)
+                
+            logger.log_agent(agent_name, reply)
             
             console.print(Panel(Markdown(reply), title=f"{agent_name} Output", border_style="green"))
             current_input = reply
             
         console.rule(f"[bold blue]Workflow '{workflow_name}' Completed[/bold blue]")
+        console.print(f"[green]Log saved to: {logger.get_filepath()}[/green]")
         return current_input

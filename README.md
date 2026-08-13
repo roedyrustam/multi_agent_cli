@@ -29,6 +29,16 @@ curl -sSL https://raw.githubusercontent.com/YOUR_USERNAME/multi-agent-cli/master
 
 *(Note: Don't forget to replace `YOUR_USERNAME` with your actual GitHub username before sharing these links!)*
 
+### 🐳 Using Docker (Recommended)
+If you have Docker and Docker Compose installed, you can skip Python environment setup entirely!
+```bash
+# Ensure you have your .env file ready
+docker-compose up -d
+
+# To attach to the interactive chat session:
+docker attach multi_agent_cli_cli_1
+```
+
 ### 🔧 Manual Installation
 1. **Clone the repository**
    ```bash
@@ -83,6 +93,9 @@ Want to chat directly with a single agent to test its skills? You can enter an i
 python cli.py chat Researcher
 ```
 Type `exit` or `quit` to leave the chat.
+
+### 5. Auto-Saved Conversation Logs
+Every time you run a workflow or chat with an agent, the full conversation is automatically exported as a Markdown file in the `outputs/` directory.
 
 ---
 

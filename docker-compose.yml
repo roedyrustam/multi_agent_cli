@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  cli:
+    build: .
+    volumes:
+      - ./.env:/app/.env
+      - ./outputs:/app/outputs
+      - ./skills:/app/skills
+      - ./agents.yaml:/app/agents.yaml
+    stdin_open: true # Allows interactive mode (docker attach)
+    tty: true        # Allocates a pseudo-TTY
+    # By default, start an interactive chat with the Researcher agent
+    command: ["python", "cli.py", "chat", "Researcher"]

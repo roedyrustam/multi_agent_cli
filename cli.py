@@ -126,9 +126,12 @@ def chat(agent_name: str = typer.Argument(..., help="The name of the agent to ch
         setup()
         
     try:
+        from logger import ConversationLogger
         config = load_config()
         agent_cfg = get_agent_config(agent_name, config)
         agent = Agent(agent_cfg)
+        
+        logger = ConversationLogger("chat", agent_name)
         
         console.print(f"\n[bold green]Started interactive chat with {agent_name} ({agent.role})[/bold green]")
         console.print("Type [bold red]'exit'[/bold red] or [bold red]'quit'[/bold red] to end the session.\n")
@@ -136,14 +139,19 @@ def chat(agent_name: str = typer.Argument(..., help="The name of the agent to ch
         while True:
             user_input = Prompt.ask("[bold blue]You[/bold blue]")
             if user_input.lower() in ['exit', 'quit']:
-                console.print("[yellow]Ending chat session...[/yellow]")
+                console.print(f"[yellow]Ending chat session...[/yellow]")
+                console.print(f"[green]Chat log saved to: {logger.get_filepath()}[/green]")
                 break
                 
             if not user_input.strip():
                 continue
                 
+            logger.log_user(user_input)
+                
             with console.status(f"[bold yellow]{agent_name} is typing...[/bold yellow]", spinner="dots"):
                 reply = agent.chat(user_input)
+                
+            logger.log_agent(agent_name, reply)
                 
             console.print(Panel(Markdown(reply), title=agent_name, border_style="green"))
             console.print()
