@@ -1,0 +1,21 @@
+agents:
+  - name: "Researcher"
+    role: "Senior AI Researcher"
+    model: "gemini/gemini-2.5-flash"
+    description: "Responsible for gathering facts and searching for information."
+    skills:
+      - "research-expert" # Will map to skills/research-expert.md
+
+  - name: "Writer"
+    role: "Technical Writer"
+    model: "groq/llama3-8b-8192" # Free tier example
+    description: "Responsible for writing clean, structured documentation based on the researcher's output."
+    skills:
+      - "seo-aeo-landing-page-writer"
+
+workflows:
+  - name: "research_and_write"
+    description: "Research a topic and then write a comprehensive guide."
+    steps:
+      - agent: "Researcher"
+      - agent: "Writer"
