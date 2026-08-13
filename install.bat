@@ -55,7 +55,7 @@ echo "%%~dp0venv\Scripts\macli.exe" %%* >> macli.cmd
 
 echo Adding to User PATH...
 powershell -NoProfile -ExecutionPolicy Bypass -Command "$UserPath = [Environment]::GetEnvironmentVariable('PATH', 'User'); if ($UserPath -notmatch [regex]::Escape('%INSTALL_DIR%')) { [Environment]::SetEnvironmentVariable('PATH', '%INSTALL_DIR%;' + $UserPath, 'User'); Write-Host '✅ Added %INSTALL_DIR% to PATH.' -ForegroundColor Green } else { Write-Host '✅ Already in PATH.' -ForegroundColor Green }"
-
+set "PATH=%INSTALL_DIR%;%PATH%"
 echo.
 echo =========================================
 echo  Installation Complete!

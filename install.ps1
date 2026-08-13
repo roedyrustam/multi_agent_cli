@@ -52,8 +52,10 @@ $UserPath = [Environment]::GetEnvironmentVariable("PATH", "User")
 if ($UserPath -notmatch [regex]::Escape($InstallDir)) {
     $NewPath = "$InstallDir;$UserPath"
     [Environment]::SetEnvironmentVariable("PATH", $NewPath, "User")
+    $env:PATH = "$InstallDir;" + $env:PATH
     Write-Host "✅ Added $InstallDir to PATH." -ForegroundColor Green
 } else {
+    $env:PATH = "$InstallDir;" + $env:PATH
     Write-Host "✅ Already in PATH." -ForegroundColor Green
 }
 
