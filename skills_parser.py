@@ -5,10 +5,13 @@ from pathlib import Path
 # Cache to avoid rescanning every time
 _GLOBAL_SKILLS_CACHE = {}
 
+from config import get_base_dir
+
 def get_search_paths():
     """Return a list of paths to scan for skills."""
+    local_skills_dir = Path(get_base_dir()) / "skills"
     paths = [
-        Path("skills").resolve(), # Local project skills
+        local_skills_dir.resolve(), # Local project skills
     ]
     
     # User home directory

@@ -1,14 +1,17 @@
 import os
 from datetime import datetime
 
+from config import get_base_dir
+
 class ConversationLogger:
     def __init__(self, mode: str, name: str):
         self.mode = mode
         self.name = name
-        os.makedirs("outputs", exist_ok=True)
+        outputs_dir = os.path.join(get_base_dir(), "outputs")
+        os.makedirs(outputs_dir, exist_ok=True)
         
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        self.filepath = f"outputs/{mode}_{name}_{timestamp}.md"
+        self.filepath = os.path.join(outputs_dir, f"{mode}_{name}_{timestamp}.md")
         
         with open(self.filepath, "w", encoding="utf-8") as f:
             f.write(f"# Multi-Agent CLI Log\n")

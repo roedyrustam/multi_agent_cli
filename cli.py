@@ -5,7 +5,7 @@ from rich.table import Table
 from rich.prompt import Prompt
 from rich.markdown import Markdown
 from rich.panel import Panel
-from config import load_config, get_agent_config
+from config import load_config, get_agent_config, get_base_dir
 from orchestrator import Orchestrator
 from director import SwarmDirector
 from skills_parser import get_all_skills
@@ -32,7 +32,8 @@ def setup():
     
     env_content = f"GEMINI_API_KEY={gemini_key}\nGROQ_API_KEY={groq_key}\nOPENAI_API_KEY={openai_key}\nANTHROPIC_API_KEY={anthropic_key}\nXAI_API_KEY={xai_key}\nDEEPSEEK_API_KEY={deepseek_key}\nDEFAULT_MODEL={default_model}\n"
     
-    with open(".env", "w", encoding="utf-8") as f:
+    env_path = os.path.join(get_base_dir(), ".env")
+    with open(env_path, "w", encoding="utf-8") as f:
         f.write(env_content)
         
     console.print("\n[bold green]Success![/bold green] Your keys have been saved to .env")
@@ -40,7 +41,8 @@ def setup():
 @app.command()
 def run(task: str, workflow: str = typer.Option("research_and_write", "--workflow", "-w", help="Name of the workflow to run")):
     """Runs a specific workflow with the given task."""
-    if not os.path.exists(".env"):
+    env_path = os.path.join(get_base_dir(), ".env")
+    if not os.path.exists(env_path):
         console.print("[yellow]No .env file found. Running initial setup...[/yellow]\n")
         setup()
         
@@ -115,8 +117,9 @@ description: {description}
 # Rules
 - Do not...
 """
-    os.makedirs("skills", exist_ok=True)
-    file_path = f"skills/{skill_name}.md"
+    skills_dir = os.path.join(get_base_dir(), "skills")
+    os.makedirs(skills_dir, exist_ok=True)
+    file_path = os.path.join(skills_dir, f"{skill_name}.md")
     
     if os.path.exists(file_path):
         console.print(f"[bold red]Error:[/bold red] Skill '{skill_name}' already exists.")
@@ -130,7 +133,8 @@ description: {description}
 @app.command()
 def chat(agent_name: str = typer.Argument(..., help="The name of the agent to chat with (defined in agents.yaml)")):
     """Start an interactive chat session with a specific agent."""
-    if not os.path.exists(".env"):
+    env_path = os.path.join(get_base_dir(), ".env")
+    if not os.path.exists(env_path):
         console.print("[yellow]No .env file found. Running initial setup...[/yellow]\n")
         setup()
         
@@ -178,7 +182,8 @@ def chat(agent_name: str = typer.Argument(..., help="The name of the agent to ch
 @app.command()
 def swarm(task: str):
     """Launch the Autonomous Swarm Director to dynamically orchestrate agents and tools."""
-    if not os.path.exists(".env"):
+    env_path = os.path.join(get_base_dir(), ".env")
+    if not os.path.exists(env_path):
         console.print("[yellow]No .env file found. Running initial setup...[/yellow]\n")
         setup()
         

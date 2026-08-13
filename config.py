@@ -2,9 +2,18 @@ import os
 import yaml
 from dotenv import load_dotenv
 
-def load_config(config_path: str = "agents.yaml"):
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+def get_base_dir():
+    return BASE_DIR
+
+def load_config(config_path: str = None):
     """Loads environment variables and the YAML configuration."""
-    load_dotenv()  # Load .env variables
+    if config_path is None:
+        config_path = os.path.join(BASE_DIR, "agents.yaml")
+        
+    env_path = os.path.join(BASE_DIR, ".env")
+    load_dotenv(dotenv_path=env_path)
 
     if not os.path.exists(config_path):
         raise FileNotFoundError(f"Configuration file not found: {config_path}")
