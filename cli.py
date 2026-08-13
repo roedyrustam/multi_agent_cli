@@ -27,7 +27,10 @@ def setup():
     xai_key = Prompt.ask("Enter your XAI_API_KEY (for Grok)", default="")
     deepseek_key = Prompt.ask("Enter your DEEPSEEK_API_KEY", default="")
     
-    env_content = f"GEMINI_API_KEY={gemini_key}\nGROQ_API_KEY={groq_key}\nOPENAI_API_KEY={openai_key}\nANTHROPIC_API_KEY={anthropic_key}\nXAI_API_KEY={xai_key}\nDEEPSEEK_API_KEY={deepseek_key}\n"
+    console.print("\n[bold cyan]Select Default Model[/bold cyan]")
+    default_model = Prompt.ask("Enter your DEFAULT_MODEL (e.g., gemini/gemini-2.5-flash, xai/grok-beta, deepseek/deepseek-chat)", default="gemini/gemini-2.5-flash")
+    
+    env_content = f"GEMINI_API_KEY={gemini_key}\nGROQ_API_KEY={groq_key}\nOPENAI_API_KEY={openai_key}\nANTHROPIC_API_KEY={anthropic_key}\nXAI_API_KEY={xai_key}\nDEEPSEEK_API_KEY={deepseek_key}\nDEFAULT_MODEL={default_model}\n"
     
     with open(".env", "w", encoding="utf-8") as f:
         f.write(env_content)

@@ -58,8 +58,8 @@ docker attach multi_agent_cli_cli_1
    ```
 
 
-4. **Set up Environment Variables**
-   The application comes with an interactive setup wizard! Simply run the setup command to configure your API keys:
+4. **Set up Environment Variables & Default Model**
+   The application comes with an interactive setup wizard! Simply run the setup command to configure your API keys and your `DEFAULT_MODEL` (e.g., `gemini/gemini-2.5-flash`, `xai/grok-beta`, or `deepseek/deepseek-chat`):
    ```bash
    macli setup
    ```

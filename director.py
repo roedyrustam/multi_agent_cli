@@ -10,10 +10,11 @@ class SwarmDirector:
         self.config = config
         self.orchestrator = Orchestrator(config)
         
+        import os
         director_cfg = {
             "name": "Swarm Director",
             "role": "Master AI Orchestrator",
-            "model": "gemini/gemini-2.5-flash",
+            "model": os.getenv("DEFAULT_MODEL", "gemini/gemini-2.5-flash"),
             "description": "You manage a swarm of specialized AI agents. You analyze complex tasks and break them down into steps for your swarm. You must return ONLY valid JSON."
         }
         self.director_agent = Agent(director_cfg)

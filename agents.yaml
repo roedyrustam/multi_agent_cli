@@ -13,6 +13,20 @@ agents:
     skills:
       - "seo-aeo-landing-page-writer"
 
+  - name: "Coder"
+    role: "Senior Software Engineer"
+    model: "xai/grok-beta" # Example for Grok
+    description: "Writes robust code."
+    skills:
+      - "typescript-expert"
+
+  - name: "Reviewer"
+    role: "Code Reviewer"
+    model: "deepseek/deepseek-chat" # Example for DeepSeek
+    description: "Reviews code for bugs and security."
+    skills:
+      - "security-expert"
+
 workflows:
   - name: "research_and_write"
     description: "Research a topic and then write a comprehensive guide."
