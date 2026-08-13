@@ -1,6 +1,6 @@
 Write-Host "🚀 Installing Multi-Agent CLI..." -ForegroundColor Cyan
 
-$RepoUrl = "https://github.com/YOUR_USERNAME/multi-agent-cli.git"
+$RepoUrl = "https://github.com/roedyrustam/multi_agent_cli.git"
 $InstallDir = "$env:USERPROFILE\multi-agent-cli"
 
 if (!(Get-Command git -ErrorAction SilentlyContinue)) {

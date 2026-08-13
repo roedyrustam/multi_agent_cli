@@ -3,7 +3,7 @@ echo =========================================
 echo  Installing Multi-Agent CLI...
 echo =========================================
 
-set REPO_URL=https://github.com/YOUR_USERNAME/multi-agent-cli.git
+set REPO_URL=https://github.com/roedyrustam/multi_agent_cli.git
 set INSTALL_DIR=%USERPROFILE%\multi-agent-cli
 
 git --version >nul 2>&1
