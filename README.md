@@ -1,11 +1,11 @@
 # 🚀 VibesAgent-CLI
 
-A lightweight, beginner-friendly Python Command Line Interface (CLI) for orchestrating multiple AI agents. Built with **LiteLLM**, **Typer**, and **Rich**, this tool makes it incredibly easy to experiment with multi-agent workflows using any LLM provider (OpenAI, Anthropic, Gemini, Groq, Ollama, etc.)—even on free tiers!
+A lightweight, beginner-friendly Python Command Line Interface (CLI) for orchestrating multiple AI agents. Built with **LiteLLM**, **Typer**, and **Rich**, this tool makes it incredibly easy to experiment with multi-agent workflows using any LLM provider (OpenAI, Anthropic, Gemini, Groq, xAI/Grok, DeepSeek, Ollama, etc.)—even on free tiers!
 
 This project features native integration with the **Vibes-Plug** ecosystem, allowing agents to automatically learn new "skills" from simple Markdown files.
 
 ## ✨ Features
-- **Multi-Provider Support**: Switch between Gemini, LLaMA (via Groq), Claude, or GPT models effortlessly using `LiteLLM`.
+- **Multi-Provider Support**: Switch between Gemini, LLaMA (via Groq), Claude, GPT, Grok, or DeepSeek models effortlessly using `LiteLLM`.
 - **Markdown Skill Injection**: Define expert skills in Markdown (`skills/` directory) and they will be automatically injected into your agent's system prompt.
 - **Beautiful Terminal UI**: Uses `Rich` for gorgeous tables, colors, and loading animations.
 - **YAML Configuration**: Easily define your agents, their roles, and step-by-step workflows in `agents.yaml`.

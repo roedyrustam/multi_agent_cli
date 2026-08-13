@@ -24,8 +24,10 @@ def setup():
     groq_key = Prompt.ask("Enter your GROQ_API_KEY (from Groq Console)", default="")
     openai_key = Prompt.ask("Enter your OPENAI_API_KEY", default="")
     anthropic_key = Prompt.ask("Enter your ANTHROPIC_API_KEY", default="")
+    xai_key = Prompt.ask("Enter your XAI_API_KEY (for Grok)", default="")
+    deepseek_key = Prompt.ask("Enter your DEEPSEEK_API_KEY", default="")
     
-    env_content = f"GEMINI_API_KEY={gemini_key}\nGROQ_API_KEY={groq_key}\nOPENAI_API_KEY={openai_key}\nANTHROPIC_API_KEY={anthropic_key}\n"
+    env_content = f"GEMINI_API_KEY={gemini_key}\nGROQ_API_KEY={groq_key}\nOPENAI_API_KEY={openai_key}\nANTHROPIC_API_KEY={anthropic_key}\nXAI_API_KEY={xai_key}\nDEEPSEEK_API_KEY={deepseek_key}\n"
     
     with open(".env", "w", encoding="utf-8") as f:
         f.write(env_content)
