@@ -36,12 +36,11 @@ This project features native integration with the **Vibes-Plug** ecosystem, allo
    ```
 
 4. **Set up Environment Variables**
-   Rename `.env.example` to `.env` and add your API keys:
-   ```env
-   GEMINI_API_KEY=your_gemini_key
-   GROQ_API_KEY=your_groq_key
-   OPENAI_API_KEY=your_openai_key
+   The application comes with an interactive setup wizard! Simply run the setup command to configure your API keys:
+   ```bash
+   python cli.py setup
    ```
+   Or you can manually rename `.env.example` to `.env` and add them yourself.
 
 ---
 

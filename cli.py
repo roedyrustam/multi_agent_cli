@@ -1,6 +1,8 @@
+import os
 import typer
 from rich.console import Console
 from rich.table import Table
+from rich.prompt import Prompt
 from config import load_config
 from orchestrator import Orchestrator
 from skills_parser import get_all_skills
@@ -9,8 +11,29 @@ app = typer.Typer(help="Multi-Agent CLI for Vibes-Plug Ecosystem")
 console = Console()
 
 @app.command()
+def setup():
+    """Interactive setup wizard for API Keys."""
+    console.print("[bold yellow]Welcome to the Setup Wizard![/bold yellow]")
+    console.print("Let's configure your API keys. You can leave a key blank if you don't plan to use that provider.\n")
+    
+    gemini_key = Prompt.ask("Enter your GEMINI_API_KEY (from Google AI Studio)", default="")
+    groq_key = Prompt.ask("Enter your GROQ_API_KEY (from Groq Console)", default="")
+    openai_key = Prompt.ask("Enter your OPENAI_API_KEY", default="")
+    
+    env_content = f"GEMINI_API_KEY={gemini_key}\nGROQ_API_KEY={groq_key}\nOPENAI_API_KEY={openai_key}\n"
+    
+    with open(".env", "w", encoding="utf-8") as f:
+        f.write(env_content)
+        
+    console.print("\n[bold green]Success![/bold green] Your keys have been saved to .env")
+
+@app.command()
 def run(task: str, workflow: str = typer.Option("research_and_write", "--workflow", "-w", help="Name of the workflow to run")):
     """Runs a specific workflow with the given task."""
+    if not os.path.exists(".env"):
+        console.print("[yellow]No .env file found. Running initial setup...[/yellow]\n")
+        setup()
+        
     try:
         config = load_config()
         orch = Orchestrator(config)
