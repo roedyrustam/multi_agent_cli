@@ -1,5 +1,17 @@
-# 🚀 VibesAgent-CLI
+<div align="center">
 
+```text
+  __  __              ___   _       ___ 
+ |  \/  |  __ _   ___| \ \ | |     |_ _|
+ | |\/| | / _` | / __| |\ \| |      | | 
+ | |  | || (_| || (__| | \ \ |___   | | 
+ |_|  |_| \__,_| \___|_|  \_\____| |___|
+          S W A R M   D I R E C T O R
+            Crafted by Roedy Rustam
+```
+*A Cyberpunk-Inspired Neural Uplink for AI Swarm Orchestration*
+
+</div>
 A lightweight, beginner-friendly Python Command Line Interface (CLI) for orchestrating multiple AI agents. Built with **LiteLLM**, **Typer**, and **Rich**, this tool makes it incredibly easy to experiment with multi-agent workflows using any LLM provider (OpenAI, Anthropic, Gemini, Groq, xAI/Grok, DeepSeek, Ollama, etc.)—even on free tiers!
 
 This project features native integration with the **Vibes-Plug** ecosystem, allowing agents to automatically learn new "skills" from simple Markdown files.

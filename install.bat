@@ -1,7 +1,20 @@
 @echo off
-echo =========================================
-echo  Installing Multi-Agent CLI...
-echo =========================================
+color 0B
+echo ==========================================================
+echo     __  __              ___   _       ___ 
+echo    ^|  \/  ^|  __ _   ___^| \ \ ^| ^|     ^|_ _^|
+echo    ^| ^|\/^| ^| / _` ^| / __^| ^|\ \^| ^|      ^| ^| 
+echo    ^| ^|  ^| ^|^| (_^| ^|^| (__^| ^| \ \ ^|___   ^| ^| 
+echo    ^|_^|  ^|_^| \__,_^| \___^|_^|  \_\____^| ^|___^|
+echo.
+echo           S W A R M   D I R E C T O R     
+echo             Crafted by Roedy Rustam       
+echo ==========================================================
+echo.
+echo [SYSTEM INITIALIZATION SEQUENCE STARTED...]
+timeout /t 1 /nobreak >nul
+echo.
+echo Bootstrapping Neural Uplink (Installing CLI)...
 
 set REPO_URL=https://github.com/roedyrustam/multi_agent_cli.git
 set INSTALL_DIR=%USERPROFILE%\multi-agent-cli

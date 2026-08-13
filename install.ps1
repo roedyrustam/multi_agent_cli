@@ -1,4 +1,18 @@
-Write-Host "🚀 Installing Multi-Agent CLI..." -ForegroundColor Cyan
+Write-Host "==========================================================" -ForegroundColor Cyan
+Write-Host "    __  __              ___   _       ___ " -ForegroundColor Cyan
+Write-Host "   |  \/  |  __ _   ___| \ \ | |     |_ _|" -ForegroundColor Cyan
+Write-Host "   | |\/| | / _`` | / __| |\ \| |      | | " -ForegroundColor Cyan
+Write-Host "   | |  | || (_| || (__| | \ \ |___   | | " -ForegroundColor Cyan
+Write-Host "   |_|  |_| \__,_| \___|_|  \_\____| |___|" -ForegroundColor Cyan
+Write-Host " "
+Write-Host "          S W A R M   D I R E C T O R     " -ForegroundColor Magenta
+Write-Host "            Crafted by Roedy Rustam       " -ForegroundColor Yellow
+Write-Host "==========================================================" -ForegroundColor Cyan
+Write-Host ""
+Write-Host "[SYSTEM INITIALIZATION SEQUENCE STARTED...]" -ForegroundColor DarkGray
+Start-Sleep -Seconds 1
+Write-Host ""
+Write-Host "🚀 Bootstrapping Neural Uplink (Installing CLI)..." -ForegroundColor Cyan
 
 $RepoUrl = "https://github.com/roedyrustam/multi_agent_cli.git"
 $InstallDir = "$env:USERPROFILE\multi-agent-cli"
