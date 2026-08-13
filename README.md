@@ -81,13 +81,19 @@ View the agents defined in your `agents.yaml`:
 python cli.py list-agents
 ```
 
-### 3. Run a Workflow
-Execute a multi-agent workflow defined in `agents.yaml`. By default, it runs the `research_and_write` workflow.
+### 3. Autonomous Swarm Director (Advanced)
+Turn the CLI into a dynamic Swarm (like OpenDevin or Hermes). The Swarm Director will dynamically parse your prompt, delegate to agents, and the agents can execute real Python code, search the web, and read/write files!
+```bash
+python cli.py swarm "Search the web for the latest Python version, write a simple script to print it, and execute it to verify."
+```
+
+### 4. Run a static Workflow
+Execute a multi-agent workflow defined strictly in `agents.yaml`. By default, it runs the `research_and_write` workflow.
 ```bash
 python cli.py run "Build a simple Hello World in Python" --workflow research_and_write
 ```
 
-### 4. Interactive Chat Mode
+### 5. Interactive Chat Mode
 Want to chat directly with a single agent to test its skills? You can enter an interactive chat mode!
 ```bash
 python cli.py chat Researcher

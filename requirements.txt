@@ -4,3 +4,4 @@ litellm>=1.40.15
 python-dotenv>=1.0.1
 pyyaml>=6.0.1
 python-frontmatter>=1.1.0
+duckduckgo-search>=5.3.0

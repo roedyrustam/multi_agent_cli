@@ -7,6 +7,7 @@ from rich.markdown import Markdown
 from rich.panel import Panel
 from config import load_config, get_agent_config
 from orchestrator import Orchestrator
+from director import SwarmDirector
 from skills_parser import get_all_skills
 from agent import Agent
 
@@ -163,6 +164,20 @@ def chat(agent_name: str = typer.Argument(..., help="The name of the agent to ch
             console.print(Panel(Markdown(reply), title=agent_name, border_style="green"))
             console.print()
             
+    except Exception as e:
+        console.print(f"[bold red]Error:[/bold red] {str(e)}")
+
+@app.command()
+def swarm(task: str):
+    """Launch the Autonomous Swarm Director to dynamically orchestrate agents and tools."""
+    if not os.path.exists(".env"):
+        console.print("[yellow]No .env file found. Running initial setup...[/yellow]\n")
+        setup()
+        
+    try:
+        config = load_config()
+        director = SwarmDirector(config)
+        director.run_swarm(task)
     except Exception as e:
         console.print(f"[bold red]Error:[/bold red] {str(e)}")
 
