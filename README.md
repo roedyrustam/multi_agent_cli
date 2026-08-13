@@ -19,12 +19,12 @@ This project features native integration with the **Vibes-Plug** ecosystem, allo
 
 **Using PowerShell:**
 ```powershell
-irm https://raw.githubusercontent.com/roedyrustam/multi_agent_cli/master/install.ps1 | iex
+irm https://raw.githubusercontent.com/roedyrustam/multi_agent_cli/main/install.ps1 | iex
 ```
 
 **Using CMD (requires curl):**
 ```cmd
-curl -sSL https://raw.githubusercontent.com/roedyrustam/multi_agent_cli/master/install.bat -o install.bat && install.bat
+curl -sSL https://raw.githubusercontent.com/roedyrustam/multi_agent_cli/main/install.bat -o install.bat && install.bat
 ```
 
 *(Note: Don't forget to replace `YOUR_USERNAME` with your actual GitHub username before sharing these links!)*
@@ -54,7 +54,7 @@ docker attach multi_agent_cli_cli_1
    # Mac/Linux:
    source venv/bin/activate
    
-   pip install -r requirements.txt
+   pip install -e .
    ```
 
 

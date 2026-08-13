@@ -27,7 +27,7 @@ Write-Host "🐍 Setting up Python virtual environment..." -ForegroundColor Gree
 python -m venv venv
 
 Write-Host "Installing dependencies and CLI tool..." -ForegroundColor Cyan
-& "$VenvDir\Scripts\pip.exe" install -e .
+& ".\venv\Scripts\pip.exe" install -e .
 
 Write-Host "✅ Installation Complete!" -ForegroundColor Cyan
 Write-Host "To get started, run the following commands:" -ForegroundColor White

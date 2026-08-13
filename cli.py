@@ -23,8 +23,9 @@ def setup():
     gemini_key = Prompt.ask("Enter your GEMINI_API_KEY (from Google AI Studio)", default="")
     groq_key = Prompt.ask("Enter your GROQ_API_KEY (from Groq Console)", default="")
     openai_key = Prompt.ask("Enter your OPENAI_API_KEY", default="")
+    anthropic_key = Prompt.ask("Enter your ANTHROPIC_API_KEY", default="")
     
-    env_content = f"GEMINI_API_KEY={gemini_key}\nGROQ_API_KEY={groq_key}\nOPENAI_API_KEY={openai_key}\n"
+    env_content = f"GEMINI_API_KEY={gemini_key}\nGROQ_API_KEY={groq_key}\nOPENAI_API_KEY={openai_key}\nANTHROPIC_API_KEY={anthropic_key}\n"
     
     with open(".env", "w", encoding="utf-8") as f:
         f.write(env_content)
