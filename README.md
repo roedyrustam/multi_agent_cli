@@ -64,11 +64,23 @@ Execute a multi-agent workflow defined in `agents.yaml`. By default, it runs the
 python cli.py run "Build a simple Hello World in Python" --workflow research_and_write
 ```
 
+### 4. Interactive Chat Mode
+Want to chat directly with a single agent to test its skills? You can enter an interactive chat mode!
+```bash
+python cli.py chat Researcher
+```
+Type `exit` or `quit` to leave the chat.
+
 ---
 
 ## 🧠 How to Add New Skills
-Simply drop a new Markdown file into the `skills/` directory. It must include YAML frontmatter at the top. For example, `skills/python-expert.md`:
+The CLI provides a built-in generator to help you create new skills easily:
+```bash
+python cli.py create-skill
+```
+This will launch a wizard asking for the skill name and description, and will automatically generate a `.md` file in the `skills/` directory with the proper YAML frontmatter.
 
+For example, a `python-expert.md` skill looks like this:
 ```markdown
 ---
 name: python-expert

@@ -3,9 +3,12 @@ import typer
 from rich.console import Console
 from rich.table import Table
 from rich.prompt import Prompt
-from config import load_config
+from rich.markdown import Markdown
+from rich.panel import Panel
+from config import load_config, get_agent_config
 from orchestrator import Orchestrator
 from skills_parser import get_all_skills
+from agent import Agent
 
 app = typer.Typer(help="Multi-Agent CLI for Vibes-Plug Ecosystem")
 console = Console()
@@ -75,6 +78,76 @@ def list_agents():
             table.add_row(agent.get("name"), agent.get("role"), agent.get("model"), skills_str)
             
         console.print(table)
+    except Exception as e:
+        console.print(f"[bold red]Error:[/bold red] {str(e)}")
+
+@app.command()
+def create_skill():
+    """Interactive wizard to create a new Markdown skill."""
+    console.print("[bold cyan]Skill Generator Wizard[/bold cyan]")
+    skill_name = Prompt.ask("Enter the skill filename (e.g., python-expert)").strip().lower()
+    
+    # Ensure standard format (no spaces, ending in .md handled later)
+    skill_name = skill_name.replace(" ", "-")
+    if skill_name.endswith(".md"):
+        skill_name = skill_name[:-3]
+        
+    description = Prompt.ask("Enter a brief description for this skill")
+    
+    skill_content = f"""---
+name: {skill_name}
+description: {description}
+---
+
+# Guidelines
+1. Step one...
+2. Step two...
+
+# Rules
+- Do not...
+"""
+    os.makedirs("skills", exist_ok=True)
+    file_path = f"skills/{skill_name}.md"
+    
+    if os.path.exists(file_path):
+        console.print(f"[bold red]Error:[/bold red] Skill '{skill_name}' already exists.")
+        return
+        
+    with open(file_path, "w", encoding="utf-8") as f:
+        f.write(skill_content)
+        
+    console.print(f"[bold green]Success![/bold green] Skill created at {file_path}. You can now edit it with your custom instructions!")
+
+@app.command()
+def chat(agent_name: str = typer.Argument(..., help="The name of the agent to chat with (defined in agents.yaml)")):
+    """Start an interactive chat session with a specific agent."""
+    if not os.path.exists(".env"):
+        console.print("[yellow]No .env file found. Running initial setup...[/yellow]\n")
+        setup()
+        
+    try:
+        config = load_config()
+        agent_cfg = get_agent_config(agent_name, config)
+        agent = Agent(agent_cfg)
+        
+        console.print(f"\n[bold green]Started interactive chat with {agent_name} ({agent.role})[/bold green]")
+        console.print("Type [bold red]'exit'[/bold red] or [bold red]'quit'[/bold red] to end the session.\n")
+        
+        while True:
+            user_input = Prompt.ask("[bold blue]You[/bold blue]")
+            if user_input.lower() in ['exit', 'quit']:
+                console.print("[yellow]Ending chat session...[/yellow]")
+                break
+                
+            if not user_input.strip():
+                continue
+                
+            with console.status(f"[bold yellow]{agent_name} is typing...[/bold yellow]", spinner="dots"):
+                reply = agent.chat(user_input)
+                
+            console.print(Panel(Markdown(reply), title=agent_name, border_style="green"))
+            console.print()
+            
     except Exception as e:
         console.print(f"[bold red]Error:[/bold red] {str(e)}")
 
