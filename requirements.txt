@@ -1,6 +1,6 @@
 typer>=0.28.0
 rich>=13.7.1
-litellm>=1.40.15
+litellm>=1.109.0
 python-dotenv>=1.0.1
 pyyaml>=6.0.1
 python-frontmatter>=1.1.0
