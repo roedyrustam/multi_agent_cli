@@ -1,4 +1,4 @@
-typer>=0.28.0
+typer>=0.29.1
 rich>=15.0.0
 litellm>=1.109.1
 python-dotenv>=1.2.4
